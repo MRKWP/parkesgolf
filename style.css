@@ -12,20 +12,25 @@ License URI:    https://www.gnu.org/licenses/gpl-3.0.html
 
 .pg-course-nav{
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-gap: 1rem;
+    grid-template-columns: repeat(18, 1fr);
+    grid-gap: 0.5rem;
     margin: 0 auto;
     width:100%;
 }
-.pg-course-nav .hole{
+.pg-course-nav a.hole{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     border: 2px solid var(--global-palette5);
     border-radius: 4px;
     text-decoration: none;
+    transition: all .1s linear;
 }
 .pg-course-nav a:active.hole{
     border: 2px solid var(--global-palette1);
+}
+.pg-course-nav a:hover.hole{
+    border: 2px solid var(--global-palette1);
+    box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
 }
 .pg-course-nav a.hole div.number{
     display: block;
@@ -33,7 +38,6 @@ License URI:    https://www.gnu.org/licenses/gpl-3.0.html
     font-size: 2rem;
     text-decoration: none;
     font-weight: bold;
-    grid-column: span 2;
     
 }
 .pg-course-nav a.hole div.par {
@@ -41,12 +45,14 @@ License URI:    https://www.gnu.org/licenses/gpl-3.0.html
     text-align: center;
     background: var(--global-palette5);
     color: var(--global-palette9);
+    font-size: 0.8rem;
 }
 .pg-course-nav a.hole div.metres{
     display: block;
     text-align: center;
     background: var(--global-palette3);
     color: var(--global-palette7);
+    font-size: 0.8rem;
 }
 
 
