@@ -92,11 +92,18 @@ add_shortcode( 'pg_course_nav', 'pg_course_nav_shortcode' );
 /**
  * We use WordPress's init hook to make sure
  * our blocks are registered early in the loading
- * process.
+ * process. Also load the scripts for responsive web images and map hilight.
  *
  * @link https://developer.wordpress.org/reference/hooks/init/
  */
 function pg_child_register_acf_blocks() {
+
+	// phpcs:ignore
+	wp_enqueue_script( 'my-rwd', get_stylesheet_directory_uri() . '/js/jquery.rwdImageMaps.js', array( 'jquery' ), true );
+
+	// phpcs:ignore
+	wp_enqueue_script( 'my-hilight', get_stylesheet_directory_uri() . '/js/jquery.maphilight.js', array( 'jquery' ), true );
+
 	/**
 	 * We register our block's with WordPress's handy
 	 * register_block_type();
