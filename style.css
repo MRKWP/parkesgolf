@@ -17,6 +17,21 @@ License URI:    https://www.gnu.org/licenses/gpl-3.0.html
     margin: 0 auto;
     width:100%;
 }
+@media screen and (min-width: 900px) and (max-width: 1180px) {
+    .pg-course-nav{
+        grid-template-columns: repeat(9, 1fr);
+    }
+}
+@media screen and (min-width: 385px) and (max-width: 899px) {
+    .pg-course-nav{
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+@media screen and (max-width: 384px) {
+    .pg-course-nav{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 .pg-course-nav a.hole{
     display: grid;
     grid-template-columns: 1fr;
