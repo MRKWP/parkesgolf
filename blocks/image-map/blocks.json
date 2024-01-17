@@ -1,0 +1,16 @@
+{
+    "name": "acf/image-map",
+    "title": "Image Map",
+    "description": "A custom block that uses ACF fields for an Image Map.",
+    "style": [ "file:./image-map.css" ],
+    "category": "formatting",
+    "icon": "image",
+    "keywords": ["image map", "image"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "image-map.php"
+    },
+    "supports": {
+        "anchor": true
+    }
+}
