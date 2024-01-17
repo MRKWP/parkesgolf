@@ -1,12 +1,19 @@
 <?php
 /**
+ * Child Theme functions file.
+ *
+ * @package parkesgolf
+ */
+
+/**
  * Setup Child Theme Styles
+ *
+ * @return void
  */
 function parkesgolf_enqueue_styles() {
 	wp_enqueue_style( 'parkesgolf-style', get_stylesheet_directory_uri() . '/style.css', false, '1.0' );
 }
-// add_action( 'wp_enqueue_scripts', 'parkesgolf_enqueue_styles', 20 );
-
+add_action( 'wp_enqueue_scripts', 'parkesgolf_enqueue_styles', 20 );
 
 /**
  * Setup Child Theme Palettes
@@ -32,3 +39,71 @@ function parkesgolf_change_option_defaults( $defaults ) {
 	return wp_parse_args( $new_defaults, $defaults );
 }
 add_filter( 'kadence_theme_options_defaults', 'parkesgolf_change_option_defaults', 20 );
+
+/**
+ * Function to run my shortcode for the Course Navigation.
+ */
+function pg_course_nav_shortcode() {
+
+	// Things that you want to do.
+	$query = new WP_Query(
+		array(
+			'post_type'      => 'hole',
+			'post_status'    => 'publish',
+			'posts_per_page' => '20',
+			'order'          => 'ASC',
+		)
+	);
+
+	$navigation = '<div class="pg-course-nav">';
+
+	while ( $query->have_posts() ) {
+		$query->the_post();
+
+		$hole = array();
+		$hole = (object) $hole;
+
+		$hole->id       = get_the_ID();
+		$hole->title    = get_the_title( $hole->id );
+		$hole->number   = str_replace( 'hole ', '', strtolower( $hole->title ) );
+		$hole->par      = get_field( 'par', $hole->id );
+		$hole->distance = get_field( 'blue_tees', $hole->id );
+		$hole->url      = esc_url( get_permalink( $hole->id ) );
+
+		$format = '<a class="hole"href="%s">
+					<div class="number">%s</div>
+					<div class="par">Par %s</div>
+					<div class="metres">%s m</div>
+				</a>';
+
+		$navigation .= sprintf( $format, $hole->url, $hole->number, $hole->par, $hole->distance );
+	}
+
+	$navigation .= '</div>';
+
+	wp_reset_postdata();
+
+	// Output needs to be return.
+	return $navigation;
+}
+// Register shortcode.
+add_shortcode( 'pg_course_nav', 'pg_course_nav_shortcode' );
+
+/**
+ * We use WordPress's init hook to make sure
+ * our blocks are registered early in the loading
+ * process.
+ *
+ * @link https://developer.wordpress.org/reference/hooks/init/
+ */
+function pg_child_register_acf_blocks() {
+	/**
+	 * We register our block's with WordPress's handy
+	 * register_block_type();
+	 *
+	 * @link https://developer.wordpress.org/reference/functions/register_block_type/
+	 */
+	register_block_type( __DIR__ . '/blocks/image-map' );
+}
+// Here we call our pg_child_register_acf_block() function on init.
+add_action( 'init', 'pg_child_register_acf_blocks' );
