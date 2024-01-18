@@ -39,6 +39,7 @@ License URI:    https://www.gnu.org/licenses/gpl-3.0.html
     border-radius: 4px;
     text-decoration: none;
     transition: all .1s linear;
+    background: var(--global-palette9);
 }
 .pg-course-nav a:active.hole{
     border: 2px solid var(--global-palette1);
