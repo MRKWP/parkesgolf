@@ -1,19 +1,18 @@
 <?php
 /**
- * Child Theme functions file.
+ * Default function file for Child Theme.
  *
  * @package parkesgolf
  */
 
 /**
- * Setup Child Theme Styles
- *
- * @return void
+ * Setup Child Theme Styles.
  */
 function parkesgolf_enqueue_styles() {
 	wp_enqueue_style( 'parkesgolf-style', get_stylesheet_directory_uri() . '/style.css', false, '1.0' );
 }
 add_action( 'wp_enqueue_scripts', 'parkesgolf_enqueue_styles', 20 );
+
 
 /**
  * Setup Child Theme Palettes
@@ -89,20 +88,21 @@ function pg_course_nav_shortcode() {
 // Register shortcode.
 add_shortcode( 'pg_course_nav', 'pg_course_nav_shortcode' );
 
+
 /**
  * We use WordPress's init hook to make sure
  * our blocks are registered early in the loading
- * process. Also load the scripts for responsive web images and map hilight.
+ * process. Also register the scripts for responsive web images and map hilight.
  *
  * @link https://developer.wordpress.org/reference/hooks/init/
  */
 function pg_child_register_acf_blocks() {
 
 	// phpcs:ignore
-	wp_enqueue_script( 'my-rwd', get_stylesheet_directory_uri() . '/js/jquery.rwdImageMaps.js', array( 'jquery' ), true );
+	wp_register_script( 'my-rwd', get_stylesheet_directory_uri() . '/js/jquery.rwdImageMaps.js', array( 'jquery' ), true );
 
 	// phpcs:ignore
-	wp_enqueue_script( 'my-hilight', get_stylesheet_directory_uri() . '/js/jquery.maphilight.js', array( 'jquery' ), true );
+	wp_register_script( 'my-hilight', get_stylesheet_directory_uri() . '/js/jquery.maphilight.js', array( 'jquery' ), true );
 
 	/**
 	 * We register our block's with WordPress's handy

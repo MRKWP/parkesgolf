@@ -5,7 +5,7 @@ Template:       kadence
 Author:         MRK WP
 Author URI:     https://www.mrkwp.com
 Description:    Parkes Golf Child Theme for Kadence
-Version:        1.0
+Version:        1.1
 License:        GNU General Public License v3.0 (or later)
 License URI:    https://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -39,6 +39,7 @@ License URI:    https://www.gnu.org/licenses/gpl-3.0.html
     border-radius: 4px;
     text-decoration: none;
     transition: all .1s linear;
+    background: var(--global-palette9);
 }
 .pg-course-nav a:active.hole{
     border: 2px solid var(--global-palette1);

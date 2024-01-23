@@ -3,14 +3,16 @@
     "title": "Image Map",
     "description": "A custom block that uses ACF fields for an Image Map.",
     "style": [ "file:./image-map.css" ],
+    "viewScript": [ "file:./view.js", "RWD-Image-init"],
     "category": "formatting",
-    "icon": "image",
+    "icon": "dashicons-images-alt2",
     "keywords": ["image map", "image"],
     "acf": {
         "mode": "preview",
         "renderTemplate": "image-map.php"
     },
     "supports": {
-        "anchor": true
+        "anchor": true,
+        "className": true
     }
 }
